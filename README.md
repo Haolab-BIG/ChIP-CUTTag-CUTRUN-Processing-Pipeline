@@ -146,6 +146,7 @@ This pipeline provides a fully containerized Singularity environment that bundle
       * ii. (Optional) Create a tab-seperated file named `Comparison.txt`.
       
         `Treatment_prefix`: The identifier of the treatment sample as defined in `SampleInfor.txt`.
+        
         `Control_prefix`: The identifier of the corresponding control sample as defined in `SampleInfor.txt`, typically an input sample.
       
         Note: Each line represents one treatment-control comparison. Ensure that there are no extra spaces or empty lines in the files.
