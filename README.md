@@ -284,33 +284,60 @@ This pipeline provides a fully containerized Singularity environment that bundle
    * **Output Structure**
       ```bash
       outputdir/
-      ├── bam
-            ├── Control.5w.bowtie.stats
-            ├── Control.5w.DeDup.bam
-            ├── Control.5w.DeDup.bam.bai
-            ├── Control.5w.flagstat.txt
-            ├── Control.5w.markdup.log
-            ├── Treatment.5w.bowtie.stats
-            ├── Treatment.5w.DeDup.bam
-            ├── Treatment.5w.DeDup.bam.bai
-            ├── Treatment.5w.flagstat.txt
-            └── Treatment.5w.markdup.log
+      ├── bam/
+            ├── Input.bowtie.stats
+            ├── Input.markdup.log
+            ├── Input.DeDup.bam
+            ├── Input.DeDup.bam.bai
+            ├── Input.flagstat.txt
+            ├── H3K27ac.bowtie.stats
+            ├── H3K27ac.markdup.log
+            ├── H3K27ac.DeDup.bam
+            ├── H3K27ac.DeDup.bam.bai
+            ├── H3K27ac.flagstat.txt
+            ├── H3K4me3.bowtie.stats
+            ├── H3K4me3.markdup.log
+            ├── H3K4me3.DeDup.bam
+            ├── H3K4me3.DeDup.bam.bai
+            └── H3K4me3.flagstat.txt
       ├── bw/
-            ├── Control.5w.DeDup.bw
-            └── Treatment.5w.DeDup.bw
+            ├── Input.DeDup.bw
+            ├── H3K27ac.DeDup.bw
+            └── H3K4me3.DeDup.bw
       ├── figure/
-            ├── BW_compare.pdf
-            ├── BW_compare_cor.pdf
+            ├── Input.peak.pdf
+            ├── H3K27ac.peak.pdf
+            ├── H3K4me3.peak.pdf
             ├── fingerprints.pdf
-            └── Treatment.5w.peak.pdf
+            ├── BW_compare_PCA.pdf
+            ├── BW_compare_cor.pdf
+            ├── H3K27ac.vs.Input.peak.pdf
+            └── H3K4me3.vs.Input.peak.pdf
+      ├── peak.per.sample/
+            ├── Input.macs3.stats
+            ├── Input_peaks.xls
+            ├── Input_peaks.broadPeak
+            ├── Input_peaks.gappedPeak
+            ├── H3K27ac.macs3.stats
+            ├── H3K27ac_peaks.xls
+            ├── H3K27ac_peaks.broadPeak
+            ├── H3K27ac_peaks.gappedPeak
+            ├── H3K4me3.macs3.stats
+            ├── H3K4me3_peaks.xls
+            ├── H3K4me3_peaks.broadPeak
+            └── H3K4me3_peaks.gappedPeak
+      ├── peak.compare/
+            ├── H3K27ac.vs.Input.macs3.stats
+            ├── H3K27ac.vs.Input_peaks.xls
+            ├── H3K27ac.vs.Input_peaks.broadPeak
+            ├── H3K27ac.vs.Input_peaks.gappedPeak
+            ├── H3K4me3.vs.Input.macs3.stats
+            ├── H3K4me3.vs.Input_peaks.xls
+            ├── H3K4me3.vs.Input_peaks.broadPeak
+            └── H3K4me3.vs.Input_peaks.gappedPeak
       ├── multiqc/
             ├── multiqc_data/
             └── multiqc_report.html
-      └── peak/
-            ├── Treatment.5w.macs3.stats
-            ├── Treatment.5w_peaks.broadPeak
-            ├── Treatment.5w_peaks.gappedPeak
-            └── Treatment.5w_peaks.xls
       ```
 
 
