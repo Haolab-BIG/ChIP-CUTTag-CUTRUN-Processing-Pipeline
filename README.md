@@ -459,7 +459,7 @@ This pipeline provides a fully containerized Singularity environment that bundle
         | qValue | -log10 q-value (FDR) at the peak summit |
         | summit | Relative summit position to the peak start |
 
-        - **Application**: Represents high-resolution binding sites and is widely used for downstream visualization and integrative genomic analyses.
+        - **Application**: Used for quantitative peak analysis, filtering peaks by significance, fold enrichment, or integrating with downstream functional annotation, motif analysis, and visualization.
 
           <img width="673" height="305" alt="图片" src="https://github.com/user-attachments/assets/2379edbf-596f-4832-b26d-867317443cc9" />
 
@@ -479,13 +479,9 @@ This pipeline provides a fully containerized Singularity environment that bundle
         | pValue | Mean -log10 p-value across the peak |
         | qValue | Mean -log10 q-value (FDR) across the peak |
 
-        - **Application**: Used for visualization DNA breadk signals, with bigwig file.
+        - **Application**: Used for quantitative peak analysis, filtering peaks by significance, fold enrichment, or integrating with downstream functional annotation, motif analysis, and visualization.
 
-          example of H3K27ac.vs.Input_peaks.broadPeak: 
           <img width="687" height="310" alt="图片" src="https://github.com/user-attachments/assets/4297588f-10b9-4093-981b-451a7fe2bf26" />
-
-          example of H3K27ac.vs.Input_peaks.broadPeak on igv with corresponding bw files:
-          <img width="957" height="327" alt="图片" src="https://github.com/user-attachments/assets/a8b5b074-4257-4d6e-ae04-edbc110dbcf2" />
 
       - **`*_peaks.gappedPeak`**
 
@@ -531,6 +527,24 @@ This pipeline provides a fully containerized Singularity environment that bundle
 
         - **Application**: Used for quantitative peak analysis, filtering peaks by significance, fold enrichment, or integrating with downstream functional annotation, motif analysis, and visualization.
 
+      - **`*_stringent.bed` / `*_relaxed.bed`**
+
+        - **Content**:  BED6 format file containing enriched regions identified from the SEACR bedGraph signal, including total and maximum signal metrics. The suffix **stringent** or **relaxed** corresponds to the strictness of the SEACR threshold used. These files can be directly loaded into the UCSC Genome Browser or IGV (recommended to pair with a matching bigWig track for visualization, as example in `*_peaks.broadPeak` section).
+
+        - **Columns**:
+        | Column           | Description                                                                                   |
+        |------------------|-----------------------------------------------------------------------------------------------|
+        | chrom            | Chromosome name                                                                               |
+        | start            | Start coordinate of the enriched region (0-based)                                             |
+        | end              | End coordinate of the enriched region (not inclusive)                                         |
+        | total_signal     | Total bedGraph signal within the region                                                       |
+        | max_signal       | Maximum bedGraph signal observed at any single base within the region                          |
+        | max_signal_region| Region spanning the most upstream and downstream bases that share the maximum bedGraph signal  |
+
+        - **Application**: Used for quantitative peak analysis, filtering peaks by significance, fold enrichment, or integrating with downstream functional annotation, motif analysis, and visualization.
+
+          <img width="581" height="394" alt="图片" src="https://github.com/user-attachments/assets/a51c1b24-fe7d-4edf-a108-c3314cafe5cb" />
+
       - **`*.peak.pdf`**
 
         - **Content**: Heatmap visualizing read enrichment over peaks. Generated using `plotHeatmap` from deepTools with a `*_peaks.broadPeak` and `*bw` input. The heatmap shows signal intensity (color-coded, viridis colormap) across all peaks, with missing data represented in white. The height and width of the heatmap are set for clear visualization of peak patterns.
@@ -544,6 +558,15 @@ This pipeline provides a fully containerized Singularity environment that bundle
 
           <img width="487" height="776" alt="图片" src="https://github.com/user-attachments/assets/48e6e62f-4d5f-484f-9d28-6e327770e9a7" />
 
+      - **`*_peaks.broadPeak` / `*_peaks.narrowPeak` / `*_stringent.bed` / `*_relaxed.bed`**
+
+        - **Content**: Genomic interval files produced by peak-calling pipelines:
+
+        - **Application**:  
+          Each of these files can be loaded into **IGV** or the **UCSC Genome Browser** together with the matched **bigWig track file** for direct, interactive genome-wide visualization of peak regions and signal intensity.
+
+          <img width="957" height="327" alt="图片" src="https://github.com/user-attachments/assets/a8b5b074-4257-4d6e-ae04-edbc110dbcf2" />
+		  
 # Part V Video Tutorials
 
    Watch this video tutorial to see a complete walkthrough of running the pipeline, using Example code for ChIP-seq (Histomodification):
