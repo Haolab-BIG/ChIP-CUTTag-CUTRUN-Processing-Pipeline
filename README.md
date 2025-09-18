@@ -281,7 +281,7 @@ This pipeline provides a fully containerized Singularity environment that bundle
 
 # Part IV Output
 
-   * **Output Structure**
+   * **Output Structure with MACS3**
       ```bash
       result_chip_histone /
       ├── bam/
@@ -340,6 +340,50 @@ This pipeline provides a fully containerized Singularity environment that bundle
             └── multiqc_report.html
       ```
 
+   * **Output Structure with SEACR**
+      ```bash
+      result_chip_histone /
+      ├── bam/
+            ├── Input.bowtie.stats
+            ├── Input.markdup.log
+            ├── Input.DeDup.bam
+            ├── Input.DeDup.bam.bai
+            ├── Input.flagstat.txt
+            ├── H3K27ac.bowtie.stats
+            ├── H3K27ac.markdup.log
+            ├── H3K27ac.DeDup.bam
+            ├── H3K27ac.DeDup.bam.bai
+            ├── H3K27ac.flagstat.txt
+            ├── H3K4me3.bowtie.stats
+            ├── H3K4me3.markdup.log
+            ├── H3K4me3.DeDup.bam
+            ├── H3K4me3.DeDup.bam.bai
+            └── H3K4me3.flagstat.txt
+      ├── bw/
+            ├── Input.DeDup.bw
+            ├── H3K27ac.DeDup.bw
+            └── H3K4me3.DeDup.bw
+      ├── figure/
+            ├── Input.peak.pdf
+            ├── H3K27ac.peak.pdf
+            ├── H3K4me3.peak.pdf
+            ├── fingerprints.pdf
+            ├── BW_compare_PCA.pdf
+            ├── BW_compare_cor.pdf
+            ├── H3K27ac.vs.Input.peak.pdf
+            └── H3K4me3.vs.Input.peak.pdf
+      ├── peak.per.sample/
+            ├── Input_seacr_top0.01.stringent.bed
+            ├── H3K27ac_seacr_top0.01.stringent.bed
+            └── H3K4me3_seacr_top0.01.stringent.bed
+      ├── peak.compare/
+            ├── H3K27ac.vs.Input_seacr.stringent.bed
+            └── H3K4me3.vs.Input_seacr.stringent.bed
+      ├── multiqc/
+            ├── multiqc_data/
+            └── multiqc_report.html
+      ```
+      
    * **Output Interpretation**
 
       - **`*.bowtie.stats`**
