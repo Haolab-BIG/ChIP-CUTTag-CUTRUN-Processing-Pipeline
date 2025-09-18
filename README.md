@@ -128,20 +128,20 @@ This pipeline provides a fully containerized Singularity environment that bundle
         Note: This pipeline supports both paired-end (PE) and single-end (SE) sequencing data. If you have SE data, simply remove the R2_path column. Ensure that there are no extra spaces or empty lines in the files.
       
         PE Example `SampleInfor.txt`:
-        ```
-        Sample_prefix	R1_path	R2_path
-        Input	/path/to/data/Input_1.fastq.gz	/path/to/data/Input_2.fastq.gz
-        H3K27ac	/path/to/data/H3K27ac_1.fastq.gz	/path/to/data/H3K27ac_2.fastq.gz
-        H3K4me3	/path/to/data/H3K4me3_1.fastq.gz	/path/to/data/H3K4me3_2.fastq.gz
-        ```
-      
+
+		| Sample_prefix | R1_path                                | R2_path                                |
+        |--------------|-----------------------------------------|-----------------------------------------|
+        | Input        | /path/to/data/Input_1.fastq.gz          | /path/to/data/Input_2.fastq.gz          |
+        | H3K27ac      | /path/to/data/H3K27ac_1.fastq.gz        | /path/to/data/H3K27ac_2.fastq.gz        |
+        | H3K4me3      | /path/to/data/H3K4me3_1.fastq.gz        | /path/to/data/H3K4me3_2.fastq.gz        |
+
         SE Example `SampleInfor.txt`:
-        ```
-        Sample_prefix	path
-        Input	/path/to/data/Input.fastq.gz
-        H3K27ac	/path/to/data/H3K27ac.fastq.gz
-        H3K4me3	/path/to/data/H3K4me3.fastq.gz
-        ```
+
+        | Sample_prefix | path                                   |
+        |--------------|----------------------------------------|
+        | Input        | /path/to/data/Input.fastq.gz           |
+        | H3K27ac      | /path/to/data/H3K27ac.fastq.gz         |
+        | H3K4me3      | /path/to/data/H3K4me3.fastq.gz         |
 
       * ii. (Optional) Create a tab-seperated file named `Comparison.txt`.
       
@@ -152,11 +152,11 @@ This pipeline provides a fully containerized Singularity environment that bundle
         Note: Each line represents one treatment-control comparison. Ensure that there are no extra spaces or empty lines in the files.
       
         Example `Comparison.txt`:
-        ```
-        Treatment_prefix	Control_prefix
-        H3K27ac	Input
-        H3K4me3	Input
-        ```
+
+		| Treatment_prefix | Control_prefix |
+		|------------------|----------------|
+		| H3K27ac          | Input         |
+		| H3K4me3          | Input         |
 
 6.   **Required File Structure**
       ```bash
@@ -279,6 +279,38 @@ This pipeline provides a fully containerized Singularity environment that bundle
       - `--shift_val`:          (optional) For MACS3, Set shift for read 5' ends in base pairs for MACS3, effective only when `--nomodel` is `on`; positive moves 5'->3', negative moves 3'->5'
       - `--seacr_threshold`:    (optional) For SEACR, Percentile-based cutoff for SEACR, e.g., 0.01 = top 1% of signal regions. Recommended 0.01 for sharp marks like H3K4me3 and 0.05 for broad marks like H3K27me3 (default: 0.01)
 
+# Part IV Output
 
+   * **Output Structure**
+      ```bash
+      outputdir/
+      ├── bam
+            ├── Control.5w.bowtie.stats
+            ├── Control.5w.DeDup.bam
+            ├── Control.5w.DeDup.bam.bai
+            ├── Control.5w.flagstat.txt
+            ├── Control.5w.markdup.log
+            ├── Treatment.5w.bowtie.stats
+            ├── Treatment.5w.DeDup.bam
+            ├── Treatment.5w.DeDup.bam.bai
+            ├── Treatment.5w.flagstat.txt
+            └── Treatment.5w.markdup.log
+      ├── bw/
+            ├── Control.5w.DeDup.bw
+            └── Treatment.5w.DeDup.bw
+      ├── figure/
+            ├── BW_compare.pdf
+            ├── BW_compare_cor.pdf
+            ├── fingerprints.pdf
+            └── Treatment.5w.peak.pdf
+      ├── multiqc/
+            ├── multiqc_data/
+            └── multiqc_report.html
+      └── peak/
+            ├── Treatment.5w.macs3.stats
+            ├── Treatment.5w_peaks.broadPeak
+            ├── Treatment.5w_peaks.gappedPeak
+            └── Treatment.5w_peaks.xls
+      ```
 
 
