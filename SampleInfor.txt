@@ -1,0 +1,4 @@
+Sample_prefix	R1_path	R2_path
+Input	/mnt1/2.NAS2024/wutan/9.pipe/2.chip-seq/rawdata/Input_1.fastq.gz	/mnt1/2.NAS2024/wutan/9.pipe/2.chip-seq/rawdata/Input_2.fastq.gz
+H3K27ac	/mnt1/2.NAS2024/wutan/9.pipe/2.chip-seq/rawdata/H3K27ac_1.fastq.gz	/mnt1/2.NAS2024/wutan/9.pipe/2.chip-seq/rawdata/H3K27ac_2.fastq.gz
+H3K4me3	/mnt1/2.NAS2024/wutan/9.pipe/2.chip-seq/rawdata/H3K4me3_1.fastq.gz	/mnt1/2.NAS2024/wutan/9.pipe/2.chip-seq/rawdata/H3K4me3_2.fastq.gz
