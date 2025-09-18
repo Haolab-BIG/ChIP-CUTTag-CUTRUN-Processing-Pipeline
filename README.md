@@ -481,7 +481,11 @@ This pipeline provides a fully containerized Singularity environment that bundle
 
         - **Application**: Used for visualization DNA breadk signals, with bigwig file.
 
-          <img width="620" height="305" alt="图片" src="https://github.com/user-attachments/assets/906efe78-1a7d-4c09-814a-676270a420ad" />
+          example of H3K27ac.vs.Input_peaks.broadPeak: 
+          <img width="687" height="310" alt="图片" src="https://github.com/user-attachments/assets/4297588f-10b9-4093-981b-451a7fe2bf26" />
+
+          example of H3K27ac.vs.Input_peaks.broadPeak on igv with corresponding bw files:
+          <img width="957" height="327" alt="图片" src="https://github.com/user-attachments/assets/a8b5b074-4257-4d6e-ae04-edbc110dbcf2" />
 
       - **`*_peaks.gappedPeak`**
 
@@ -507,7 +511,7 @@ This pipeline provides a fully containerized Singularity environment that bundle
 
         - **Application**: Used to analyze subpeak structure, study internal peak features, or visualize complex enrichment patterns in broad regions.
 
-          <img width="1146" height="303" alt="图片" src="https://github.com/user-attachments/assets/96ad35e2-217c-4e93-ba87-fc53b266f492" />
+          <img width="1101" height="301" alt="图片" src="https://github.com/user-attachments/assets/989f95f5-942f-4434-ab70-0b44a9333e3e" />
 
       - **`*_peaks.xls`**
 
