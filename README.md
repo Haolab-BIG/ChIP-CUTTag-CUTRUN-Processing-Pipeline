@@ -283,7 +283,7 @@ This pipeline provides a fully containerized Singularity environment that bundle
 
    * **Output Structure**
       ```bash
-      outputdir/
+      result_chip_histone /
       ├── bam/
             ├── Input.bowtie.stats
             ├── Input.markdup.log
@@ -546,4 +546,8 @@ This pipeline provides a fully containerized Singularity environment that bundle
 
 # Part V Video Tutorials
 
-   Watch this video tutorial to see a complete walkthrough of running the pipeline:
+   Watch this video tutorial to see a complete walkthrough of running the pipeline, using Example code for ChIP-seq (Histomodification):
+
+   https://github.com/user-attachments/assets/07d45db2-cdc7-4fd4-85da-9d808edc10dc
+
+
