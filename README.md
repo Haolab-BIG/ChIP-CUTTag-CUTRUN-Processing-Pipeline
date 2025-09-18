@@ -190,18 +190,18 @@ This pipeline provides a fully containerized Singularity environment that bundle
                            --threads 8 \
                            --binSize 10 \
                            --g hs \
-                           --X 2000 \                            ## long read length
+                           --X 2000 \                               ## fragments are relatively long; not needed for SE
                            --peakcalling MACS3 \
-                           --peaktype broad \                    ## broad peaks
-                           --peakPerSample yes \                 ## Peaks can be called per sample without a control and can coexist with `--comparisonInfor`
-                           --qval 0.05 \
-                           --broad_cutoff 0.1 \
-                           --llocal 100000 \                     ## broad local background, used for sample without a control
-                           --keepdup all \
+                           --peaktype broad \                       ## broad peaks
+                           --peakPerSample yes \                    ## Peaks can be called per sample without a control and can coexist with `--comparisonInfor`
+                           --qval 0.05 \                            ## a relaxed threshold
+                           --broad_cutoff 0.1 \                     ## Cutoff for broad peaks
+                           --llocal 100000 \                        ## larger local background, used for sample without a control
+                           --keepdup all \                          ## Keep all duplicates
                            --nomodel on \
                            --nolambda on \
                            --callsummits off \
-                           --extsize_val 147                     ## histon size
+                           --extsize_val 147                        ## nucleosome size
       ```
       
    * **Example code for ChIP-seq (Transcription Factors)**
@@ -217,17 +217,17 @@ This pipeline provides a fully containerized Singularity environment that bundle
                            --threads 8 \
                            --binSize 5 \
                            --g hs \
-                           --X 1000 \
+                           --X 1000 \                               ## fragments are shorter; not needed for SE
                            --peakcalling MACS3 \
-                           --peaktype narrow \
-                           --peakPerSample yes \
-                           --pval 0.001 \
-                           --llocal 50000 \
-                           --keepdup 1 \
+                           --peaktype narrow \                      ## narrow peaks
+                           --peakPerSample yes \                    ## Peaks can be called per sample without a control and can coexist with `--comparisonInfor`
+                           --pval 0.001 \                           ## a more stringent p-value
+                           --llocal 50000 \                         ## smaller local background, used for sample without a control
+                           --keepdup 1 \                            ## keep uniquely mapped reads for TFs 
                            --nomodel on \
-                           --nolambda on \
-                           --callsummits on \
-                           --extsize_val 200
+                           --nolambda on \                          ## used for sample without a control
+                           --callsummits on \                       ## precise summit calling
+                           --extsize_val 200                        ## Typical fragment size for TFs
       ```
 
    * **Example code for CUT&Tag and CUT&Run**
@@ -241,13 +241,13 @@ This pipeline provides a fully containerized Singularity environment that bundle
                            --adapterFa ./basement_data/illumina_adapter.fa \
                            --sif ./basement_data/DNAProteinSeq.sif \
                            --threads 8 \
-                           --binSize 1 \
+                           --binSize 1 \                            ## Higher resolution
                            --g ./basement_data/chromatin.size \
-                           --X 700 \
-                           --peakcalling SEACR \
-                           --peaktype stringent \
+                           --X 700 \                                ## fragments are shorter; not needed for SE
+                           --peakcalling SEACR \                    ## use SEACR for peak calling
+                           --peaktype stringent \                   ## High signal-to-noise, use stringent mode
                            --peakPerSample yes \
-                           --seacr_threshold 0.01
+                           --seacr_threshold 0.01                   ## Strict threshold for top signal regions, used for sample without a control
       ```
 
    * **Command Parameters**
