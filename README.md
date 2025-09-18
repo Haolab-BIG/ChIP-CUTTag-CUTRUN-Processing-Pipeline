@@ -252,14 +252,32 @@ This pipeline provides a fully containerized Singularity environment that bundle
 
    * **Command Parameters**
 
-      - `--sampleInfor`:  Path to the treatment FASTQ file. For paired-end data, it is recommended to provide the path to the R1 file (required)
-      - `--controlFq`:    Path to the input control fastq. For paired-end data, it is recommended to provide the path to the R1 file (optinal)
-      - `--outputdir`:    Path to the directory where the output will be stored (required)
-      - `--referencedir`: Path to the directory where bowtie reference build with prefix (required)
-      - `--adapterFa`:    Path to the adapter fasta (required)
-      - `--sif`:          Path to the singularity environment file (required)
-      - `--threads`:      Number of threads to use (optional, default: 8)
-      - `--binSize`:      Number of binsize to use (optional, default: 10)
-      - `--g`:            specise from macs3: hs (human); mm (mouse); ce (C. elegans); dm (Drosophila melanogaster); ...
+      - `--sampleInfor`:        (required) A tab-separated file containing the sample prefix and the path(s) to the FASTQ file(s)
+      - `--comparisonInfor`:    (optinal) A tab-separated file containing the prefixes of treatment and control samples for comparison
+      - `--outputdir`:          (required) Path to the directory where the output will be stored
+      - `--referencedir`:       (required) Path to the directory where bowtie reference build with prefix
+      - `--adapterFa`:          (required) Path to the adapter fasta
+      - `--sif`:                (required) Path to the singularity environment file
+      - `--threads`:            (optional) Number of threads to use (default: 8)
+      - `--binSize`:            (optional) Number of binsize to use (default: 10)
+      - `--peakcalling`:        (optional) Number of binsize to use (default: 10)
+      - `--g`:                  (optional) If `--peakcalling` is set to `MACS3`, provide the species code accepted by MACS3, for example: `hs` (human), `mm` (mouse), `ce` (C. elegans), `dm` (Drosophila melanogaster), etc; If `--peakcalling` is set to `SEACR`, provide the path to the corresponding `chromatin.size` file for the genome of interest.
+      - `--X`:                  (optional) Maximum fragment length for paired-end mapping in Bowtie2. Typically 700 for Cut&Tag and Cut&Run, 1000 for ChIP-seq (TF), 2000 for ChIP-seq (histone marks)
+      - `--peakcalling`:        (optional) Peak calling method, either `MACS3` or `SEACR` (default: `MACS3`)
+      - `--peaktype`:           (optional) When using MACS3, set `broad` or `narrow`. When using SEACR, set `relaxed` or `stringent` (default: `narrow`)
+      - `--peakPerSample`:      (optional) Call peaks for each sample individually, Sst to `yes` if --comparisonInfor is not provided, or optionally yes even when --comparisonInfor is provided, `yes` or `no` (default: `yes`)
+      - `--pval`:               (optional) For MACS3, P-value cutoff for peak calling to determine significance of narrow/strong peaks. If specified, MACS3 uses p-value instead of q-value
+      - `--qval`:               (optional) For MACS3, Q-value (FDR) cutoff for narrow/strong peaks, controlling false discovery rate (default: 0.01)
+      - `--broad_cutoff`:       (optional) For MACS3, P-value or q-value cutoff for broad/weak peaks, effective only when `--peaktype` is `broad` (default: 0.1)
+      - `--llocal`:             (optional) For MACS3, `--llocal` value for samples without input control (default: 100000)
+      - `--keepdup`:            (optional) For MACS3, `--keep-dup` setting (default: `all`)
+      - `--nomodel`:            (optional) For MACS3, Disable model building, set `on` or `off` (default: `on`)
+      - `--nolambda`:           (optional) For MACS3, Disable dynamic lambda, set `on` or `off` (default: `on`)
+      - `--callsummits`:        (optional) For MACS3, Enable calling of peak summits within enriched regions, set `on` or `off` (default: `off`)
+      - `--extsize_val`:        (optional) For MACS3, Set fragment/extension size for MACS3 in base pairs, effective only when `--nomodel` is `on`
+      - `--shift_val`:          (optional) For MACS3, Set shift for read 5' ends in base pairs for MACS3, effective only when `--nomodel` is `on`; positive moves 5'->3', negative moves 3'->5'
+      - `--seacr_threshold`:    (optional) For SEACR, Percentile-based cutoff for SEACR, e.g., 0.01 = top 1% of signal regions. Recommended 0.01 for sharp marks like H3K4me3 and 0.05 for broad marks like H3K27me3 (default: 0.01)
 
-Call peaks for each sample without a control. Set to yes if --comparisonInfor is not provided, or optionally yes even when --comparisonInfor is provided.
+
+
+
