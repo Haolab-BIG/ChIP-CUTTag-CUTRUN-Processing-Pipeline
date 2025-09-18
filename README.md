@@ -181,7 +181,7 @@ This pipeline provides a fully containerized Singularity environment that bundle
 
       ```bash
       bash ./basement_data/run_DNAProteinSeq.sh \
-                           --sampleInfor ./basement_data/SampleInfor2.txt \
+                           --sampleInfor ./basement_data/SampleInfor.txt \
                            --comparisonInfor ./basement_data/Comparison.txt \
                            --outputdir ./result_chip_histone \
                            --referencedir ./basement_data/hg38/bowtie2_index \
@@ -190,18 +190,18 @@ This pipeline provides a fully containerized Singularity environment that bundle
                            --threads 8 \
                            --binSize 10 \
                            --g hs \
-                           --X 2000 \
+                           --X 2000 \                            ## long read length
                            --peakcalling MACS3 \
-                           --peaktype broad \
-                           --peakPerSample yes \
+                           --peaktype broad \                    ## broad peaks
+                           --peakPerSample yes \                 ## Peaks can be called per sample without a control and can coexist with `--comparisonInfor`
                            --qval 0.05 \
                            --broad_cutoff 0.1 \
-                           --llocal 100000 \
+                           --llocal 100000 \                     ## broad local background, used for sample without a control
                            --keepdup all \
                            --nomodel on \
                            --nolambda on \
                            --callsummits off \
-                           --extsize_val 147
+                           --extsize_val 147                     ## histon size
       ```
       
    * **Example code for ChIP-seq (Transcription Factors)**
@@ -262,3 +262,4 @@ This pipeline provides a fully containerized Singularity environment that bundle
       - `--binSize`:      Number of binsize to use (optional, default: 10)
       - `--g`:            specise from macs3: hs (human); mm (mouse); ce (C. elegans); dm (Drosophila melanogaster); ...
 
+Call peaks for each sample without a control. Set to yes if --comparisonInfor is not provided, or optionally yes even when --comparisonInfor is provided.
