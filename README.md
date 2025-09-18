@@ -120,42 +120,42 @@ This pipeline provides a fully containerized Singularity environment that bundle
 5.   **Required Input Metadata Files**
 
       i. Create a tab-seperated file named `SampleInfor.txt`.
+        
+        `Sample_prefix`: A unique identifier for the sample (e.g., Control). This name will be used for output subdirectories.
+        `R1_path`: The absolute path to the Read 1 FASTQ file, which may be gzipped or uncompressed; soft links are not supported.
+        `R2_path`: The absolute path to the Read 2 FASTQ file, which may be gzipped or uncompressed; soft links are not supported.
       
-          `Sample_prefix`: A unique identifier for the sample (e.g., Control). This name will be used for output subdirectories.
-          `R1_path`: The absolute path to the Read 1 FASTQ file, which may be gzipped or uncompressed; soft links are not supported.
-          `R2_path`: The absolute path to the Read 2 FASTQ file, which may be gzipped or uncompressed; soft links are not supported.
+        Note: This pipeline supports both paired-end (PE) and single-end (SE) sequencing data. If you have SE data, simply remove the R2_path column. Ensure that there are no extra spaces or empty lines in the files.
       
-          Note: This pipeline supports both paired-end (PE) and single-end (SE) sequencing data. If you have SE data, simply remove the R2_path column. Ensure that there are no extra spaces or empty lines in the files.
+        PE Example `SampleInfor.txt`:
+        ```
+        Sample_prefix	R1_path	R2_path
+        Input	/path/to/data/Input_1.fastq.gz	/path/to/data/Input_2.fastq.gz
+        H3K27ac	/path/to/data/H3K27ac_1.fastq.gz	/path/to/data/H3K27ac_2.fastq.gz
+        H3K4me3	/path/to/data/H3K4me3_1.fastq.gz	/path/to/data/H3K4me3_2.fastq.gz
+        ```
       
-          PE Example `SampleInfor.txt`:
-          ```
-          Sample_prefix	R1_path	R2_path
-          Input	/path/to/data/Input_1.fastq.gz	/path/to/data/Input_2.fastq.gz
-          H3K27ac	/path/to/data/H3K27ac_1.fastq.gz	/path/to/data/H3K27ac_2.fastq.gz
-          H3K4me3	/path/to/data/H3K4me3_1.fastq.gz	/path/to/data/H3K4me3_2.fastq.gz
-          ```
-      
-          SE Example `SampleInfor.txt`:
-          ```
-          Sample_prefix	path
-          Input	/path/to/data/Input.fastq.gz
-          H3K27ac	/path/to/data/H3K27ac.fastq.gz
-          H3K4me3	/path/to/data/H3K4me3.fastq.gz
-          ```
+        SE Example `SampleInfor.txt`:
+        ```
+        Sample_prefix	path
+        Input	/path/to/data/Input.fastq.gz
+        H3K27ac	/path/to/data/H3K27ac.fastq.gz
+        H3K4me3	/path/to/data/H3K4me3.fastq.gz
+        ```
 
       ii. (Optional) Create a tab-seperated file named `Comparison.txt`.
       
-          `Treatment_prefix`: The identifier of the treatment sample as defined in `SampleInfor.txt`.
-          `Control_prefix`: The identifier of the corresponding control sample as defined in `SampleInfor.txt`, typically an input sample.
+        `Treatment_prefix`: The identifier of the treatment sample as defined in `SampleInfor.txt`.
+        `Control_prefix`: The identifier of the corresponding control sample as defined in `SampleInfor.txt`, typically an input sample.
       
-          Note: Each line represents one treatment-control comparison. Ensure that there are no extra spaces or empty lines in the files.
+        Note: Each line represents one treatment-control comparison. Ensure that there are no extra spaces or empty lines in the files.
       
-          Example `Comparison.txt`:
-          ```
-          Treatment_prefix	Control_prefix
-          H3K27ac	Input
-          H3K4me3	Input
-          ```
+        Example `Comparison.txt`:
+        ```
+        Treatment_prefix	Control_prefix
+        H3K27ac	Input
+        H3K4me3	Input
+        ```
 
 6.   **Required File Structure**
       ```bash
